@@ -1,5 +1,6 @@
 import Layout from "@/layout";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function Home() {
   useEffect(() => {
@@ -12,6 +13,8 @@ export default function Home() {
     <>
       <Layout metaTitle="Home" metaDescription="halaman home">
         <p>Home</p>
+        <Image src="/next.png" width={300} height={300} alt="next-image" />
+        <img src="/next.png" width={300} height={300} alt="html-img" />
       </Layout>
     </>
   );
