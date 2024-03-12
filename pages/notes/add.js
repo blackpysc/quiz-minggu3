@@ -8,11 +8,25 @@ import {
   Button,
   Input,
   Textarea,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
 } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import React from "react";
 
 export default function AddNotes() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
   const router = useRouter();
   const [notes, setNotes] = useState({
     title: "",
@@ -38,35 +52,33 @@ export default function AddNotes() {
 
   return (
     <>
-      <LayoutComponent metaTitle="Notes">
-        <Card margin="5" padding="5">
-          <Heading>Add Notes</Heading>
-          <Grid gap="5">
-            <GridItem>
-              <Text>Title</Text>
-              <Input
-                type="text"
-                onChange={(event) =>
-                  setNotes({ ...notes, title: event.target.value })
-                }
-              />
-            </GridItem>
-            <GridItem>
-              <Text>Description</Text>
-              <Textarea
-                onChange={(event) =>
-                  setNotes({ ...notes, description: event.target.value })
-                }
-              />
-            </GridItem>
-            <GridItem>
-              <Button onClick={() => HandleSubmit()} colorScheme="blue">
-                Submit
-              </Button>
-            </GridItem>
-          </Grid>
-        </Card>
-      </LayoutComponent>
+      <Card margin="5" padding="5">
+        <Heading>Add Notes</Heading>
+        <Grid gap="5">
+          <GridItem>
+            <Text>Title</Text>
+            <Input
+              type="text"
+              onChange={(event) =>
+                setNotes({ ...notes, title: event.target.value })
+              }
+            />
+          </GridItem>
+          <GridItem>
+            <Text>Description</Text>
+            <Textarea
+              onChange={(event) =>
+                setNotes({ ...notes, description: event.target.value })
+              }
+            />
+          </GridItem>
+          <GridItem>
+            <Button onClick={() => HandleSubmit()} colorScheme="blue">
+              Submit
+            </Button>
+          </GridItem>
+        </Grid>
+      </Card>
     </>
   );
 }
