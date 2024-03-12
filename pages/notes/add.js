@@ -12,8 +12,6 @@ import {
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const LayoutComponent = dynamic(() => import("@/layout"));
-
 export default function AddNotes() {
   const router = useRouter();
   const [notes, setNotes] = useState({
